@@ -1,0 +1,81 @@
+{
+  "browser": "153.0.8010.12",
+  "media": "synthetic 20s mp4, tone only, no speech",
+  "boundaries": [
+    {
+      "event_schema_version": 1,
+      "event_id": "edb7f724-881b-4e02-9a33-3d9056196365:7",
+      "session_id": "edb7f724-881b-4e02-9a33-3d9056196365",
+      "seq": 7,
+      "at_utc": "2026-09-26T09:20:09.972Z",
+      "session_elapsed_ms": 2328,
+      "type": "review_pause",
+      "media_id": "timing-demo-20s",
+      "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+      "media_time_ms": 3010.212,
+      "mode": "review",
+      "phase": "focused_listening",
+      "delay_ms": 1000,
+      "audio_cue_id": "c0002",
+      "display_cue_id": null,
+      "action_cue_id": "c0001",
+      "origin": "system",
+      "details": {
+        "target_cue_id": "c0001",
+        "reason": "review",
+        "observed_boundary_ms": 3010.212,
+        "overshoot_ms": 10.211999999999989
+      }
+    },
+    {
+      "event_schema_version": 1,
+      "event_id": "edb7f724-881b-4e02-9a33-3d9056196365:11",
+      "session_id": "edb7f724-881b-4e02-9a33-3d9056196365",
+      "seq": 11,
+      "at_utc": "2026-09-26T09:20:12.405Z",
+      "session_elapsed_ms": 4761,
+      "type": "review_pause",
+      "media_id": "timing-demo-20s",
+      "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+      "media_time_ms": 5000.577,
+      "mode": "review",
+      "phase": "focused_listening",
+      "delay_ms": 1000,
+      "audio_cue_id": null,
+      "display_cue_id": null,
+      "action_cue_id": "c0002",
+      "origin": "system",
+      "details": {
+        "target_cue_id": "c0002",
+        "reason": "review",
+        "observed_boundary_ms": 5000.577,
+        "overshoot_ms": 0.5770000000002256
+      }
+    },
+    {
+      "event_schema_version": 1,
+      "event_id": "edb7f724-881b-4e02-9a33-3d9056196365:15",
+      "session_id": "edb7f724-881b-4e02-9a33-3d9056196365",
+      "seq": 15,
+      "at_utc": "2026-09-26T09:20:13.221Z",
+      "session_elapsed_ms": 5577,
+      "type": "review_pause",
+      "media_id": "timing-demo-20s",
+      "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+      "media_time_ms": 14527.42,
+      "mode": "review",
+      "phase": "focused_listening",
+      "delay_ms": 1000,
+      "audio_cue_id": null,
+      "display_cue_id": null,
+      "action_cue_id": "c0005",
+      "origin": "system",
+      "details": {
+        "target_cue_id": "c0005",
+        "reason": "review",
+        "observed_boundary_ms": 14527.42,
+        "overshoot_ms": 27.420000000000073
+      }
+    }
+  ]
+}

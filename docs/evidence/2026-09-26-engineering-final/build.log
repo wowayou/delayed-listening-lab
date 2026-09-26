@@ -1,0 +1,16 @@
+
+> delayed-listening-lab@0.1.0 build
+> vite build
+
+vite v8.3.1 building client environment for production...
+transforming...
+✓ 11 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  4.94 kB │ gzip: 2.22 kB
+dist/assets/index-wCHFHIC8.css   5.03 kB │ gzip: 1.83 kB
+dist/assets/index-DBkGlfF6.js   24.83 kB │ gzip: 9.10 kB
+
+✓ built in 90ms
+
+EXIT_CODE=0

@@ -1,0 +1,49 @@
+
+> delayed-listening-lab@0.1.0 test
+> vitest run tests/player.test.ts -t no-target
+
+
+ RUN  v5.0.2 /home/forbackup/Dev/my-projects/delayed-listening-lab
+
+ ❯ tests/player.test.ts (13 tests | 2 failed | 11 skipped) 12ms
+   ❯ M3 / review and replay AC-11–17 (10)
+     × no-target operations are no-ops after seek in review 10ms
+     × no-target operations are no-ops after switch mode at end 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/player.test.ts > M3 / review and replay AC-11–17 > no-target operations are no-ops after seek in review
+ FAIL  tests/player.test.ts > M3 / review and replay AC-11–17 > no-target operations are no-ops after switch mode at end
+AssertionError: expected { media_time_ms: 20000, …(6) } to deeply equal { media_time_ms: 20000, …(6) }
+
+- Expected
++ Received
+
+@@ -3,7 +3,7 @@
+    "audio_cue_id": null,
+    "delay_ms": 1000,
+    "display_cue_id": null,
+    "media_time_ms": 20000,
+    "mode": "review",
+-   "phase": "review_ready",
++   "phase": "ended",
+  }
+
+ ❯ tests/player.test.ts:87:25
+     85|       c.mark(origin);
+     86|     }
+     87|     expect(c.context()).toEqual(before);
+       |                         ^
+     88|     expect(events).toEqual(recorded);
+     89|     expect(media.currentMs).toBe(20000);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 11 skipped (13)
+   Start at  19:22:49
+   Duration  172ms (transform 64%, import 16%, tests 16%, worker 4%)
+
+
+EXIT_CODE=1

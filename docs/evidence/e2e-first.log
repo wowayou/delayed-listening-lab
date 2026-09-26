@@ -1,0 +1,24 @@
+
+> delayed-listening-lab@0.1.0 test:e2e
+> playwright test
+
+[WebServer] (node:239406) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 11 tests using 1 worker
+
+(node:239444) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 tests/e2e/app.spec.ts:41:3 › AC-05/11/12 real wav playback, continuous and short boundaries (7.7s)
+  ✓   2 tests/e2e/app.spec.ts:41:3 › AC-05/11/12 real mp4 playback, continuous and short boundaries (6.1s)
+  ✓   3 tests/e2e/app.spec.ts:74:1 › AC-01/04/05 invalid pairing, tolerance, cancellation, repeat import and URL lifetime (2.0s)
+  ✓   4 tests/e2e/app.spec.ts:100:1 › AC-02/03 browser SRT and location errors (489ms)
+  ✓   5 tests/e2e/app.spec.ts:107:1 › AC-06–09/13/15/19 precise seeks, delay, replay target and explanatory logs (3.9s)
+  ✓   6 tests/e2e/app.spec.ts:136:1 › AC-10 natural ended tails versus explicit seek, per-target actions and restart (21.9s)
+  ✓   7 tests/e2e/app.spec.ts:150:1 › AC-14/16 keyboard, repeat, editable exclusions, rapid cancellation and replacement (1.5s)
+  ✓   8 tests/e2e/app.spec.ts:171:1 › AC-17 rejected play, decode failure and hidden handler preserve committed logs (977ms)
+  ✓   9 tests/e2e/app.spec.ts:188:1 › AC-18 no HTML execution or external requests; AC-21 long text, fixed controls, desktop sizes (752ms)
+  ✓  10 tests/e2e/app.spec.ts:210:1 › AC-20 persistence, multiple sessions and export queue snapshot (981ms)
+  ✓  11 tests/e2e/app.spec.ts:218:1 › AC-20 IndexedDB write failure, unsaved export and idempotent retry (791ms)
+
+  11 passed (3.1m)

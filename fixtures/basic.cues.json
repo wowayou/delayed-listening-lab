@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "media_id": "timing-demo-20s",
+  "track_revision": "1",
+  "source_language": "en",
+  "target_language": "zh-CN",
+  "cues": [
+    {
+      "id": "c0001",
+      "start_ms": 1000,
+      "end_ms": 3000,
+      "src": "Listen first.",
+      "tgt": "先听。"
+    },
+    {
+      "id": "c0002",
+      "start_ms": 3000,
+      "end_ms": 5000,
+      "src": "Then check what you heard.",
+      "tgt": "然后核对你听到的内容。"
+    },
+    {
+      "id": "c0003",
+      "start_ms": 6500,
+      "end_ms": 7200,
+      "src": "Try again.",
+      "tgt": null
+    },
+    {
+      "id": "c0004",
+      "start_ms": 8000,
+      "end_ms": 12000,
+      "src": "A longer sentence gives you more time to read ahead.",
+      "tgt": "较长的句子会让你有更多时间提前阅读。"
+    },
+    {
+      "id": "c0005",
+      "start_ms": 14000,
+      "end_ms": 14500,
+      "src": "All right.",
+      "tgt": "好。"
+    },
+    {
+      "id": "c0006",
+      "start_ms": 16000,
+      "end_ms": 19500,
+      "src": "We are nearly at the end of this recording.",
+      "tgt": "这段录音快结束了。"
+    },
+    {
+      "id": "c0007",
+      "start_ms": 19500,
+      "end_ms": 20000,
+      "src": "Goodbye.",
+      "tgt": "再见。"
+    }
+  ]
+}

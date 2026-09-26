@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>延迟字幕听力实验</title>
+  </head>
+  <body>
+    <main>
+      <header><div><p class="eyebrow">DELAYED LISTENING LAB · 本地原型</p><h1>先听，再核对。</h1></div><span class="local-badge">文件不上传 · 仅 1 倍速</span></header>
+      <details id="import-panel" open>
+        <summary>导入练习素材 <span id="loaded-summary">选择本地音视频与匹配字幕</span></summary>
+        <div class="import-grid">
+          <label>1. 音视频文件<input id="media-file" type="file" accept="audio/*,video/*,.mp4,.wav,.mp3" /></label>
+          <label>2. 字幕文件<input id="subtitle-file" type="file" accept=".srt,.json" /></label>
+          <div class="button-row"><button id="check-import">检查配对</button><button id="cancel-import" class="quiet">取消</button></div>
+        </div>
+        <p class="hint">重新载入会新开会话，不删除历史。字幕与声音是否匹配，请自行确认；不自动生成译文。字幕内嵌在视频里时需先用 ffmpeg 等工具提取为 .srt 再导入。</p>
+        <div id="confirmation" hidden><p id="pair-summary"></p><button id="confirm-import" class="primary">确认配对并开始会话</button></div>
+        <p id="import-status" role="status"></p>
+      </details>
+      <section class="workspace" aria-label="听力练习">
+        <div class="media-column"><div id="media-host"><div class="media-empty">本地音视频<small>先导入一对素材，练习不会自动开始</small></div></div><p id="media-info" class="hint">建议 MP4（H.264/AAC）、WAV 或 MP3</p></div>
+        <div class="settings">
+          <label for="mode">练习模式</label><select id="mode" disabled><option value="continuous">连续延迟 B</option><option value="review">片段核对</option></select>
+          <label for="delay">学习延迟 <output id="delay-value">1.0 秒</output></label><input id="delay" type="range" min="0" max="3000" step="100" value="1000" disabled />
+          <p id="delay-note" class="hint">原文整体后移；0 秒即正常字幕。</p>
+          <label for="volume">音量</label><input id="volume" type="range" min="0" max="1" step="0.05" value="0.7" />
+        </div>
+        <div class="practice">
+          <div class="status-row"><strong id="phase" role="status">等待导入</strong><span id="target">操作目标：无</span></div>
+          <div class="captions">
+            <div class="caption-row" tabindex="0" aria-label="原文，可滚动阅读"><span class="caption-label">原文</span><div id="source" class="caption-text" lang="en"></div><p id="source-note" class="caption-note">先听到片段，再查看原文。</p></div>
+            <div class="caption-row translation-row" tabindex="0" aria-label="译文，可滚动阅读"><span class="caption-label">译文</span><div id="translation" class="caption-text" lang="zh-CN"></div><p id="translation-note" class="caption-note">按需核对，不提前揭示。</p></div>
+          </div>
+          <div class="transport"><label for="progress" class="sr-only">播放进度</label><input id="progress" type="range" min="0" max="0" step="1" value="0" disabled /><output id="time">00:00.0 / 00:00.0</output></div>
+          <div class="actions"><button id="play" class="primary" disabled>播放 <kbd>Space</kbd></button><button id="translate" disabled>显示译文 <kbd>T</kbd></button><button id="replay" disabled>重听片段 <kbd>R</kbd></button><button id="mark" disabled>没听懂 <kbd>U</kbd></button><span id="feedback" role="status"></span></div>
+          <p id="player-error" class="error" role="alert"></p>
+          <p id="cue-debug" class="hint">音频条目：— · 显示条目：—</p>
+          <section id="tail-panel" hidden aria-label="片尾补看"><h2>片尾补看</h2><p class="hint">这些条目的延迟显示未完成。选择一个操作目标，再按需看译文或重听。</p><div id="tail-list"></div></section>
+        </div>
+      </section>
+      <footer><div><h2>本地练习记录</h2><p id="save-status" role="status">尚无新记录；可导出此浏览器中的历史。</p></div><div class="button-row"><button id="export-current" disabled>导出本次会话</button><button id="export-all">导出全部会话</button><button id="retry-save" hidden>重试保存</button><button id="export-unsaved" hidden>下载未保存记录</button></div><p class="hint">JSONL 每行一条事件，不含字幕正文或媒体内容，但包含文件名。仅存于当前浏览器的本站 IndexedDB；清理网站数据会删除记录，导出前留意隐私。</p><p id="export-status" role="status"></p></footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

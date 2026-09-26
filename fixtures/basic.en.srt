@@ -1,0 +1,27 @@
+1
+00:00:01,000 --> 00:00:03,000
+Listen first.
+
+2
+00:00:03,000 --> 00:00:05,000
+Then check what you heard.
+
+3
+00:00:06,500 --> 00:00:07,200
+Try again.
+
+4
+00:00:08,000 --> 00:00:12,000
+A longer sentence gives you more time to read ahead.
+
+5
+00:00:14,000 --> 00:00:14,500
+All right.
+
+6
+00:00:16,000 --> 00:00:19,500
+We are nearly at the end of this recording.
+
+7
+00:00:19,500 --> 00:00:20,000
+Goodbye.

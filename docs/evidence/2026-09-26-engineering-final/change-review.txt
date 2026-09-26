@@ -1,0 +1,280 @@
+2026-09-26 final file-level review (not Git diff)
+git status --short: exit 128, not a git repository. No Git initialization or metadata changes.
+Baseline: /tmp/delayed-listening-implementation-xvhPFl
+Compared 39 baseline files; 5 changed; 34 unchanged; none deleted.
+All 10 pre-existing docs/evidence files in the baseline are byte-identical.
+Production change: only Controller.toggle no-target guard. No dependencies/fixtures/other production files changed.
+Reviewed both generated layout screenshots; this is not Windows human usability/voice testing.
+Checked 26 local README/VERIFICATION links; all resolve (including this review).
+Saved before/after browser evidence is byte-identical to the original run artifacts.
+Before browser stats: {"startTime": "2026-09-26T11:24:27.777Z", "duration": 139080.769, "expected": 0, "skipped": 0, "unexpected": 2, "flaky": 0}
+After browser stats: {"startTime": "2026-09-26T11:30:22.057Z", "duration": 191359.833, "expected": 14, "skipped": 0, "unexpected": 0, "flaky": 0}
+All six command logs have the expected actual exit markers; both after no-target states/events are unchanged.
+
+CHANGED BASELINE FILES
+README.md
+playwright.config.ts
+src/player/controller.ts
+tests/e2e/app.spec.ts
+tests/player.test.ts
+
+ADDED DELIVERY FILES (excluding this review)
+docs/VERIFICATION.md
+docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-05-11-12-real-mp4-p-1cbe1-inuous-and-short-boundaries/real-playback-mp4.json
+docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-05-11-12-real-wav-p-ddcdc-inuous-and-short-boundaries/real-playback-wav.json
+docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-06–09-13-15-19-prec-c7c89-target-and-explanatory-logs/interaction-log.jsonl
+docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/no-target-shortcuts.json
+docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/no-target-shortcuts.json
+docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-18-no-HTML-executio-71473-ixed-controls-desktop-sizes/layout-1024.png
+docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-18-no-HTML-executio-71473-ixed-controls-desktop-sizes/layout-1440.png
+docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-18-no-HTML-executio-71473-ixed-controls-desktop-sizes/network.json
+docs/evidence/2026-09-26-engineering-final/after/results.json
+docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/error-context.md
+docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/no-target-shortcuts.json
+docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/test-failed-1.png
+docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/error-context.md
+docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/no-target-shortcuts.json
+docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/test-failed-1.png
+docs/evidence/2026-09-26-engineering-final/before/results.json
+docs/evidence/2026-09-26-engineering-final/build.log
+docs/evidence/2026-09-26-engineering-final/e2e.log
+docs/evidence/2026-09-26-engineering-final/environment.txt
+docs/evidence/2026-09-26-engineering-final/regression-before-browser.log
+docs/evidence/2026-09-26-engineering-final/regression-before-unit.log
+docs/evidence/2026-09-26-engineering-final/typecheck.log
+docs/evidence/2026-09-26-engineering-final/unit.log
+
+SOURCE/TEST/CONFIG DIFF (README separately reviewed; no removed test assertions)
+--- before/playwright.config.ts
++++ after/playwright.config.ts
+@@ -1,12 +1,18 @@
+ import { defineConfig } from '@playwright/test';
++import { randomUUID } from 'node:crypto';
++
++// Share one run ID with workers; later runs must not erase earlier evidence.
++const runId = process.env.DELAYED_LISTENING_E2E_RUN_ID ??= `${new Date().toISOString().replace(/[:.]/g, '-')}-${randomUUID().slice(0, 8)}`;
++const resultsDir = `test-results/${runId}`;
+ export default defineConfig({
+   testDir: './tests/e2e',
++  outputDir: `${resultsDir}/artifacts`,
+   fullyParallel: false,
+   workers: 1,
+   retries: 0,
+   timeout: 45000,
+   expect: { timeout: 7000 },
+-  reporter: [['list'], ['json', { outputFile: 'test-results/results.json' }]],
++  reporter: [['list'], ['json', { outputFile: `${resultsDir}/results.json` }]],
+   use: { baseURL: 'http://127.0.0.1:5173', channel: 'chromium', headless: true, viewport: { width: 1440, height: 900 }, trace: 'retain-on-failure', screenshot: 'only-on-failure' },
+   webServer: { command: 'npm run dev', url: 'http://127.0.0.1:5173', reuseExistingServer: !process.env.CI, timeout: 15000 },
+ });
+--- before/src/player/controller.ts
++++ after/src/player/controller.ts
+@@ -123,6 +123,8 @@
+     const continuing = this.phase === 'focused_review';
+     if (continuing) target = this.track.cues[this.track.cues.indexOf(this.focused!) + 1] ?? null;
+     if (!target) {
++      // Seeking past the last cue is not completion of a reviewed segment.
++      if (!continuing) return;
+       this.log('ended', origin, { reason: 'review_complete' });
+       this.phase = 'ended'; this.change(); return;
+     }
+--- before/tests/e2e/app.spec.ts
++++ after/tests/e2e/app.spec.ts
+@@ -38,7 +38,7 @@
+ }
+ test.beforeEach(async ({ page }) => { await page.goto('/'); });
+ for (const format of ['wav', 'mp4']) {
+-  test(`AC-05/11/12 real ${format} playback, continuous and short boundaries`, async ({ page, browser }) => {
++  test(`AC-05/11/12 real ${format} playback, continuous and short boundaries`, async ({ page, browser }, testInfo) => {
+     await load(page, `generated/timing-20s.${format}`);
+     await page.locator('#mode').selectOption('review');
+     await page.locator('#play').click();
+@@ -68,7 +68,7 @@
+       expect(Number(e.details.overshoot_ms)).toBeLessThanOrEqual(150);
+     }
+     sequence(events);
+-    writeFileSync(`docs/evidence/real-playback-${format}.json`, JSON.stringify({ browser: browser.version(), media: `synthetic 20s ${format}, tone only, no speech`, boundaries }, null, 2));
++    writeFileSync(testInfo.outputPath(`real-playback-${format}.json`), JSON.stringify({ browser: browser.version(), media: `synthetic 20s ${format}, tone only, no speech`, boundaries }, null, 2));
+   });
+ }
+ test('AC-01/04/05 invalid pairing, tolerance, cancellation, repeat import and URL lifetime', async ({ page }) => {
+@@ -104,7 +104,7 @@
+   await choose(page, undefined, invalid); await expect(page.locator('#import-status')).toContainText('第 2 条 (c0001)：重复 ID');
+   await expect(page.locator('#source')).toHaveText('Listen first.');
+ });
+-test('AC-06–09/13/15/19 precise seeks, delay, replay target and explanatory logs', async ({ page }) => {
++test('AC-06–09/13/15/19 precise seeks, delay, replay target and explanatory logs', async ({ page }, testInfo) => {
+   await load(page);
+   for (const t of [0, 1000, 1999]) { await range(page, 'progress', t); await expect(page.locator('#source')).toBeEmpty(); expect(await page.getByText('Listen first.', { exact: true }).count()).toBe(0); }
+   expect(await page.locator('video').evaluate((v: HTMLVideoElement) => v.controls || Array.from(v.textTracks).some(t => t.mode !== 'disabled'))).toBe(false);
+@@ -131,7 +131,7 @@
+   expect(events.find(e => e.type === 'delay_change')).toMatchObject({ delay_ms: 1000, details: { from_ms: 1000, to_ms: 0 } });
+   expect(events.find(e => e.type === 'mode_change')).toMatchObject({ mode: 'continuous', details: { from: 'continuous', to: 'review' } });
+   expect(events.filter(e => e.type === 'review_pause')).toHaveLength(1);
+-  writeFileSync('docs/evidence/interaction-log.jsonl', events.map(e => JSON.stringify(e)).join('\n') + '\n');
++  writeFileSync(testInfo.outputPath('interaction-log.jsonl'), events.map(e => JSON.stringify(e)).join('\n') + '\n');
+ });
+ test('AC-10 natural ended tails versus explicit seek, per-target actions and restart', async ({ page }) => {
+   await load(page); await range(page, 'progress', 20000); await expect(page.locator('#tail-panel')).toBeHidden();
+@@ -185,7 +185,7 @@
+   await expect(page.locator('#player-error')).toContainText('解码失败');
+   expect((await logs(page)).length).toBeGreaterThan(1);
+ });
+-test('AC-18 no HTML execution or external requests; AC-21 long text, fixed controls, desktop sizes', async ({ page }) => {
++test('AC-18 no HTML execution or external requests; AC-21 long text, fixed controls, desktop sizes', async ({ page }, testInfo) => {
+   const requests: string[] = []; page.on('request', r => requests.push(`${r.method()} ${r.url()}`));
+   const malicious = structuredClone(basic);
+   const payload = '<img src=x onerror="window.PWNED=1"><script>window.PWNED=2</script>';
+@@ -198,14 +198,14 @@
+     expect(await page.locator('#play').boundingBox()).toEqual(before);
+     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+     await expect(page.locator('#source')).toHaveCSS('white-space', 'pre-wrap'); await expect(page.locator('#source')).toHaveCSS('overflow-wrap', 'anywhere');
+-    await page.screenshot({ path: `docs/evidence/layout-${size.width}.png`, fullPage: true });
++    await page.screenshot({ path: testInfo.outputPath(`layout-${size.width}.png`), fullPage: true });
+     await page.locator('#translate').click();
+   }
+   expect(await page.locator('.captions img, .captions script').count()).toBe(0);
+   expect(await page.evaluate(() => 'PWNED' in window)).toBe(false);
+   expect(requests.filter(r => !r.includes('127.0.0.1:5173') && !r.includes('blob:http://127.0.0.1:5173'))).toEqual([]);
+   expect(requests.some(r => r.startsWith('POST') || r.endsWith('/x'))).toBe(false);
+-  writeFileSync('docs/evidence/network.json', JSON.stringify(requests, null, 2));
++  writeFileSync(testInfo.outputPath('network.json'), JSON.stringify(requests, null, 2));
+ });
+ test('AC-20 persistence, multiple sessions and export queue snapshot', async ({ page }) => {
+   await load(page); await range(page, 'progress', 3500); await page.locator('#mark').click();
+@@ -254,3 +254,33 @@
+   }
+   expect((await logs(page)).filter(e => e.type === 'not_understood')).toHaveLength(1);
+ });
++
++for (const entry of ['seek in review', 'switch mode at end']) {
++  test(`AC-14/16/19 no-target shortcuts are no-ops after ${entry}`, async ({ page }, testInfo) => {
++    await load(page);
++    if (entry === 'seek in review') await page.locator('#mode').selectOption('review');
++    await range(page, 'progress', 20000);
++    if (entry === 'switch mode at end') await page.locator('#mode').selectOption('review');
++    await expect(page.locator('#phase')).toHaveText('已到末尾 · 无待播放片段');
++    for (const id of ['play', 'translate', 'replay', 'mark']) await expect(page.locator(`#${id}`)).toBeDisabled();
++    const state = async () => ({
++      phase: await page.locator('#phase').textContent(),
++      target: await page.locator('#target').textContent(),
++      source: await page.locator('#source').textContent(),
++      translation: await page.locator('#translation').textContent(),
++      media: await page.locator('video').evaluate((v: HTMLVideoElement) => ({ time: v.currentTime, paused: v.paused })),
++    });
++    const before = { state: await state(), events: await logs(page) };
++    await page.locator('body').click({ position: { x: 3, y: 3 } });
++    await page.keyboard.press('Space');
++    await page.keyboard.press('Space');
++    await page.keyboard.down('Space'); await page.keyboard.down('Space'); await page.keyboard.up('Space');
++    for (const key of ['t', 'r', 'u']) await page.keyboard.press(key);
++    const after = { state: await state(), events: await logs(page) };
++    writeFileSync(testInfo.outputPath('no-target-shortcuts.json'), JSON.stringify({ entry, before, after }, null, 2));
++    expect(after).toEqual(before);
++    expect(after.events.some(e => e.type === 'ended')).toBe(false);
++    sequence(after.events);
++    for (const id of ['play', 'translate', 'replay', 'mark']) await expect(page.locator(`#${id}`)).toBeDisabled();
++  });
++}
+--- before/tests/player.test.ts
++++ after/tests/player.test.ts
+@@ -1,5 +1,5 @@
+ import { readFileSync } from 'node:fs';
+-import { describe, expect, it } from 'vitest';
++import { describe, expect, it, vi } from 'vitest';
+ import { Controller } from '../src/player/controller';
+ import type { Context, MediaPort } from '../src/player/controller';
+ import { parseJson } from '../src/subtitles/parse';
+@@ -69,11 +69,36 @@
+     c.setMode('continuous'); expect(c.focused).toBeNull(); expect(c.playing).toBe(false);
+     c.setMode('review'); await c.seek(20000); expect(c.view().action).toBeNull();
+   });
++  it.each(['seek in review', 'switch mode at end'])('no-target operations are no-ops after %s', async entry => {
++    const { c, media, events } = setup();
++    if (entry === 'seek in review') c.setMode('review');
++    await c.seek(20000);
++    if (entry === 'switch mode at end') c.setMode('review');
++    expect(c.phase).toBe('review_ready');
++    expect(c.view().action).toBeNull();
++    const before = c.context(), recorded = structuredClone(events);
++    const play = vi.spyOn(media, 'play'), seek = vi.spyOn(media, 'seek');
++    for (const origin of ['button', 'keyboard', 'keyboard'] as const) {
++      await c.toggle(origin);
++      await c.replay(origin);
++      c.toggleTranslation(origin);
++      c.mark(origin);
++    }
++    expect(c.context()).toEqual(before);
++    expect(events).toEqual(recorded);
++    expect(media.currentMs).toBe(20000);
++    expect(media.paused).toBe(true);
++    expect(c.playing).toBe(false);
++    expect(c.translation).toBe(false);
++    expect(play).not.toHaveBeenCalled();
++    expect(seek).not.toHaveBeenCalled();
++  });
+   it('native ended completes tolerated last cue once, continue ends review; replay last stays available', async () => {
+     const { c, media, tick, events } = setup(); media.durationMs = 19950;
+     c.setMode('review'); await c.seek(19500); await c.toggle(); tick(19950, true); await settled();
+     expect(c.phase).toBe('focused_review'); expect(c.time).toBe(19950); expect(c.tails).toEqual([]);
+     tick(19950, true); await c.toggle(); expect(c.phase).toBe('ended');
++    await c.toggle('keyboard'); await c.toggle('keyboard');
+     expect(events.filter(e => e.type === 'review_pause')).toHaveLength(1);
+     expect(events.filter(e => e.type === 'ended')).toHaveLength(1);
+     await c.replay(); expect(c.playing).toBe(true); expect(c.time).toBe(19500);
+
+SHA256 final source, fixtures, build outputs, generated engineering media, delivery documents and evidence
+b49ae63f7189f55e22dacbc51f8692b99ac024c0ee2b5c70b27250d0212d710e  README.md
+97a8cb1be10868702efc27091a076b21c9abe456152ec3daf234854088f87521  dist/assets/index-DBkGlfF6.js
+6dce733bcaae545fd2b041f6bd27e1c98d81bd4ea9c816119ec511e5d395188d  dist/assets/index-wCHFHIC8.css
+09ff7a47cc026446a2ae47bec42aca89e98f0d8ee6ef08afcf488c448c381114  dist/index.html
+227212e3ffca389acdfc6ed92b708df9fd592ad02914bd6393d84a94d702a44d  docs/VERIFICATION.md
+366dc54c3f4995fd1fc237e6c84d60c0c2d1a9c8faf2ec25ce4ddef054d9b02f  docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-05-11-12-real-mp4-p-1cbe1-inuous-and-short-boundaries/real-playback-mp4.json
+d11298e4d5083a5d559fa928341fae36172c32d42a7511bfd9cb262325a95d67  docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-05-11-12-real-wav-p-ddcdc-inuous-and-short-boundaries/real-playback-wav.json
+1915efae5a6a35f3ac09bea63ab7c3a7c8731be876652555381a4b056dc759e7  docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-06–09-13-15-19-prec-c7c89-target-and-explanatory-logs/interaction-log.jsonl
+daeef13c0badb60af8049fa8dff0e8eeefef72f520001fc8f0e2aff9d9a218e4  docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/no-target-shortcuts.json
+c76bb1c5c00fa2062b0de70b3ad2f99aebb81a81159fae9b5c0d15c475bd0119  docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/no-target-shortcuts.json
+3395707be4ab1f594241e9be078ae8fca946f0e066dd33cbadd9cf597ce83099  docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-18-no-HTML-executio-71473-ixed-controls-desktop-sizes/layout-1024.png
+47a8ad24b7b9df1744a2bb7e735dfc0ad3d7b9a778957ce6571be547a4d632af  docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-18-no-HTML-executio-71473-ixed-controls-desktop-sizes/layout-1440.png
+17fece344f1b5809a4414689e96d6a21c3fc5ff049b75d8abddfede1c37eb71a  docs/evidence/2026-09-26-engineering-final/after/artifacts/app-AC-18-no-HTML-executio-71473-ixed-controls-desktop-sizes/network.json
+b088ffc82aefd389773f53d5b4be89f1b037a145e4bf2e9b7285a76e57f9ffb5  docs/evidence/2026-09-26-engineering-final/after/results.json
+8ecec90e02da414668862ee66c0b2f7dd585b30a8a26e79c5029a4437a5bc4ea  docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/error-context.md
+705cdbc736feb73aacde1006c108d1be62733d43f33d389fbf79f3876d321d16  docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/no-target-shortcuts.json
+3bc6b8819f3cb5c717dfdbb510723f470461a4bbb3669ece5ff0bbccf791219e  docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/test-failed-1.png
+a01c7336693332e37f663b68d43edf30020fed04dd00e1779f4d4edd6c75c497  docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/error-context.md
+b2e14f4ece483d844472f3ea529ad86c468ad036e1fd65ac204d84b803713e82  docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/no-target-shortcuts.json
+95726b0262b137db33c1c46fa0c65e73c0b654bc6c30bb1120eb619d1ec486b3  docs/evidence/2026-09-26-engineering-final/before/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/test-failed-1.png
+da794e9bfc9bef232dcebc5d610e5fcf315120d59548d80eef32fa1665904ab9  docs/evidence/2026-09-26-engineering-final/before/results.json
+42d640ca67d29d586cbc21eda899ffbf24555e0852a5d15bf0982a81a1e76f62  docs/evidence/2026-09-26-engineering-final/build.log
+bbe6c8b3338841177ab3b41310034027deef84732bdad5ceae88f88f78bf4bed  docs/evidence/2026-09-26-engineering-final/e2e.log
+e7e96ee499bc826a514c4ea0ca9820b7f949470ccd15fc89d78e432a4b5784ae  docs/evidence/2026-09-26-engineering-final/environment.txt
+9dcd0fb95c859702849df01b7207cc438990397a98c92754919a8852d67719ce  docs/evidence/2026-09-26-engineering-final/regression-before-browser.log
+2dd581209f89ba9e32a336bc1b83eb0a7f406137360880235865fd9ca5816d77  docs/evidence/2026-09-26-engineering-final/regression-before-unit.log
+9406a4c58d9672db24fe0dad4eef3d751988ef503786348e9ef81ce12d642356  docs/evidence/2026-09-26-engineering-final/typecheck.log
+9412b3b90e92a21fe714422a9fd5996785a05dc1b9c790388dbe31ba9db72f72  docs/evidence/2026-09-26-engineering-final/unit.log
+5176ef776fd68b91dfea085ecc0b581586313c0eb46c9a1c6fd8c2fd4fb74fcd  fixtures/README.md
+872937f219be6cecd432be6a4355912a82d25d3a9a0fe19211a7e4f6f9de2fa0  fixtures/basic.cues.json
+c12ea4ee7454f6a65322bcf2e81e99a5483c8ec4c96c7126b5eb6a80ca51e709  fixtures/basic.en.srt
+ff89f966920b01e2d79d29c07f4fcb9e0550c7972b6abfc61c8c54c16eb776ac  generated/timing-20s.mp4
+8b0b823191bb7209333478f023e05bebc067e12fcb7b14ffd70df4cf96787503  generated/timing-20s.wav
+8362d73cafbe36b425928b7aa2bdd996df78d11c00c976d9013cb500a74f3ada  index.html
+6e0d47d4e328ecf508c9d1cb34a69f7e034d641b85926b22a129ffebc76d5a2a  package-lock.json
+c49db3fafb20381ae912f4a56c37b5a29d40ec97ad5d11b8d7f0822edbbb4531  package.json
+243f5ccba054a1522caf11dafbf097222d797c41c0bc4254359e51102f61fdff  playwright.config.ts
+88176bba180501b11ab9b233c0b4583bd2e53cce63ba816b01295f5b7853ff76  scripts/generate-media.mjs
+3dbd9b112535c208de442ff258cc2266a65c2793df09f3731fda122de673e314  src/events/log.ts
+4ae3a8783c647b688e05e1d467dffa2798deaf90e017fae30373187a8c1dcbf1  src/main.ts
+ee15e48f93b1152111885c4f92f6519e7f9a1e15b7727c987a11c392a74e62ab  src/player/controller.ts
+b0c548e61227187d7a54de68f490e2f61186253973a8de774734bb2f95eff3ba  src/player/media.ts
+b2c2995deb537aeb33d13ecdd79a822aa5134f0aa60761bb8861f696e807a5b2  src/subtitles/parse.ts
+6ae1c4ca7f2836cb794fccdfd8e8d6c295aee09b9b5efd1f5a48a1abac5ac605  src/timeline/index.ts
+b790f73bdceb438e7d4f7af760eeaeebeeb0d41a95b1db6a4552964adf537261  src/ui/keyboard.ts
+22b7e54f54792bc15d1f7677d1095580343c239eb86d0304a568b7298600b94e  src/ui/style.css
+0a626d88ff4c57d41607d442d07aca5e9a97c9f27c6401d146447517cc981506  tests/core.test.ts
+3d2c9b8a8563d5ada927fbb582bd5b69c509466a38bcc50ef3998e6a26ccf873  tests/e2e/app.spec.ts
+cee710b066d8529c8ac40e7e878cf14de87ccaeec9e27bb80ce92b4f4ba37505  tests/log.test.ts
+aa94d37315fb2912f2cfc5cd073143dbfe11d0db26ff0524fa4da7a6683d76c3  tests/player.test.ts
+fe046f716c295d2d398ee7c44230809fed181979885433d8eb0c36ce7dac49a3  tsconfig.json
+6841da66105a283bb24c58e461d392f6233c51f47ab6de4899bbf3600bfd1b33  vite.config.ts
+969b4c42d2aec16ed0b8f60e25dab9c1cfdb260b44aa2eb8942d85e8864b2a2a  vitest.config.ts
+This file is excluded from its own SHA256 list. Ignored dist/test-results are generated outputs, not user media.

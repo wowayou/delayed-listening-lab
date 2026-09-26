@@ -1,0 +1,166 @@
+
+> delayed-listening-lab@0.1.0 test:e2e
+> playwright test --grep no-target
+
+[WebServer] (node:255009) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:255046) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/e2e/app.spec.ts:259:3 › AC-14/16/19 no-target shortcuts are no-ops after seek in review (1.2s)
+(node:255206) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 tests/e2e/app.spec.ts:259:3 › AC-14/16/19 no-target shortcuts are no-ops after switch mode at end (932ms)
+
+
+  1) tests/e2e/app.spec.ts:259:3 › AC-14/16/19 no-target shortcuts are no-ops after seek in review ─
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 23
+
+    @@ -75,17 +75,39 @@
+            "session_elapsed_ms": 48,
+            "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+            "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+            "type": "seek",
+          },
+    +     Object {
+    +       "action_cue_id": null,
+    +       "at_utc": "2026-09-26T11:26:44.767Z",
+    +       "audio_cue_id": null,
+    +       "delay_ms": 1000,
+    +       "details": Object {
+    +         "reason": "review_complete",
+    +       },
+    +       "display_cue_id": null,
+    +       "event_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2:4",
+    +       "event_schema_version": 1,
+    +       "media_id": "timing-demo-20s",
+    +       "media_time_ms": 20000,
+    +       "mode": "review",
+    +       "origin": "keyboard",
+    +       "phase": "review_ready",
+    +       "seq": 4,
+    +       "session_elapsed_ms": 208,
+    +       "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+    +       "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+    +       "type": "ended",
+    +     },
+        ],
+        "state": Object {
+          "media": Object {
+            "paused": true,
+            "time": 20,
+          },
+    -     "phase": "已到末尾 · 无待播放片段",
+    +     "phase": "片段练习完成",
+          "source": "",
+          "target": "操作目标：无",
+          "translation": "",
+        },
+      }
+
+      279 |     const after = { state: await state(), events: await logs(page) };
+      280 |     writeFileSync(testInfo.outputPath('no-target-shortcuts.json'), JSON.stringify({ entry, before, after }, null, 2));
+    > 281 |     expect(after).toEqual(before);
+          |                   ^
+      282 |     expect(after.events.some(e => e.type === 'ended')).toBe(false);
+      283 |     sequence(after.events);
+      284 |     for (const id of ['play', 'translate', 'replay', 'mark']) await expect(page.locator(`#${id}`)).toBeDisabled();
+        at /home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts:281:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) tests/e2e/app.spec.ts:259:3 › AC-14/16/19 no-target shortcuts are no-ops after switch mode at end 
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 23
+
+    @@ -75,17 +75,39 @@
+            "session_elapsed_ms": 52,
+            "session_id": "957496d7-ddad-46d3-a042-438421f67d5a",
+            "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+            "type": "mode_change",
+          },
+    +     Object {
+    +       "action_cue_id": null,
+    +       "at_utc": "2026-09-26T11:26:46.330Z",
+    +       "audio_cue_id": null,
+    +       "delay_ms": 1000,
+    +       "details": Object {
+    +         "reason": "review_complete",
+    +       },
+    +       "display_cue_id": null,
+    +       "event_id": "957496d7-ddad-46d3-a042-438421f67d5a:4",
+    +       "event_schema_version": 1,
+    +       "media_id": "timing-demo-20s",
+    +       "media_time_ms": 20000,
+    +       "mode": "review",
+    +       "origin": "keyboard",
+    +       "phase": "review_ready",
+    +       "seq": 4,
+    +       "session_elapsed_ms": 190,
+    +       "session_id": "957496d7-ddad-46d3-a042-438421f67d5a",
+    +       "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+    +       "type": "ended",
+    +     },
+        ],
+        "state": Object {
+          "media": Object {
+            "paused": true,
+            "time": 20,
+          },
+    -     "phase": "已到末尾 · 无待播放片段",
+    +     "phase": "片段练习完成",
+          "source": "",
+          "target": "操作目标：无",
+          "translation": "",
+        },
+      }
+
+      279 |     const after = { state: await state(), events: await logs(page) };
+      280 |     writeFileSync(testInfo.outputPath('no-target-shortcuts.json'), JSON.stringify({ entry, before, after }, null, 2));
+    > 281 |     expect(after).toEqual(before);
+          |                   ^
+      282 |     expect(after.events.some(e => e.type === 'ended')).toBe(false);
+      283 |     sequence(after.events);
+      284 |     for (const id of ['play', 'translate', 'replay', 'mark']) await expect(page.locator(`#${id}`)).toBeDisabled();
+        at /home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts:281:19
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    tests/e2e/app.spec.ts:259:3 › AC-14/16/19 no-target shortcuts are no-ops after seek in review ──
+    tests/e2e/app.spec.ts:259:3 › AC-14/16/19 no-target shortcuts are no-ops after switch mode at end 
+
+EXIT_CODE=1

@@ -1,0 +1,240 @@
+{
+  "config": {
+    "argv": [
+      "/home/forbackup/.nvm/versions/node/v24.18.0/bin/node",
+      "/home/forbackup/Dev/my-projects/delayed-listening-lab/node_modules/.bin/playwright",
+      "test",
+      "--grep",
+      "no-target"
+    ],
+    "configFile": "/home/forbackup/Dev/my-projects/delayed-listening-lab/playwright.config.ts",
+    "rootDir": "/home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/forbackup/Dev/my-projects/delayed-listening-lab/test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/2026-09-26T11-24-27-771Z-2b68afda/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://127.0.0.1:5173",
+      "reuseExistingServer": true,
+      "timeout": 15000
+    }
+  },
+  "suites": [
+    {
+      "title": "app.spec.ts",
+      "file": "app.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "AC-14/16/19 no-target shortcuts are no-ops after seek in review",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 1246,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 23\u001b[39m\n\n\u001b[33m@@ -75,17 +75,39 @@\u001b[39m\n\u001b[2m        \"session_elapsed_ms\": 48,\u001b[22m\n\u001b[2m        \"session_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2\",\u001b[22m\n\u001b[2m        \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[22m\n\u001b[2m        \"type\": \"seek\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[31m+     Object {\u001b[39m\n\u001b[31m+       \"action_cue_id\": null,\u001b[39m\n\u001b[31m+       \"at_utc\": \"2026-09-26T11:26:44.767Z\",\u001b[39m\n\u001b[31m+       \"audio_cue_id\": null,\u001b[39m\n\u001b[31m+       \"delay_ms\": 1000,\u001b[39m\n\u001b[31m+       \"details\": Object {\u001b[39m\n\u001b[31m+         \"reason\": \"review_complete\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       \"display_cue_id\": null,\u001b[39m\n\u001b[31m+       \"event_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2:4\",\u001b[39m\n\u001b[31m+       \"event_schema_version\": 1,\u001b[39m\n\u001b[31m+       \"media_id\": \"timing-demo-20s\",\u001b[39m\n\u001b[31m+       \"media_time_ms\": 20000,\u001b[39m\n\u001b[31m+       \"mode\": \"review\",\u001b[39m\n\u001b[31m+       \"origin\": \"keyboard\",\u001b[39m\n\u001b[31m+       \"phase\": \"review_ready\",\u001b[39m\n\u001b[31m+       \"seq\": 4,\u001b[39m\n\u001b[31m+       \"session_elapsed_ms\": 208,\u001b[39m\n\u001b[31m+       \"session_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2\",\u001b[39m\n\u001b[31m+       \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[39m\n\u001b[31m+       \"type\": \"ended\",\u001b[39m\n\u001b[31m+     },\u001b[39m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"state\": Object {\u001b[22m\n\u001b[2m      \"media\": Object {\u001b[22m\n\u001b[2m        \"paused\": true,\u001b[22m\n\u001b[2m        \"time\": 20,\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[32m-     \"phase\": \"已到末尾 · 无待播放片段\",\u001b[39m\n\u001b[31m+     \"phase\": \"片段练习完成\",\u001b[39m\n\u001b[2m      \"source\": \"\",\u001b[22m\n\u001b[2m      \"target\": \"操作目标：无\",\u001b[22m\n\u001b[2m      \"translation\": \"\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 23\u001b[39m\n\n\u001b[33m@@ -75,17 +75,39 @@\u001b[39m\n\u001b[2m        \"session_elapsed_ms\": 48,\u001b[22m\n\u001b[2m        \"session_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2\",\u001b[22m\n\u001b[2m        \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[22m\n\u001b[2m        \"type\": \"seek\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[31m+     Object {\u001b[39m\n\u001b[31m+       \"action_cue_id\": null,\u001b[39m\n\u001b[31m+       \"at_utc\": \"2026-09-26T11:26:44.767Z\",\u001b[39m\n\u001b[31m+       \"audio_cue_id\": null,\u001b[39m\n\u001b[31m+       \"delay_ms\": 1000,\u001b[39m\n\u001b[31m+       \"details\": Object {\u001b[39m\n\u001b[31m+         \"reason\": \"review_complete\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       \"display_cue_id\": null,\u001b[39m\n\u001b[31m+       \"event_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2:4\",\u001b[39m\n\u001b[31m+       \"event_schema_version\": 1,\u001b[39m\n\u001b[31m+       \"media_id\": \"timing-demo-20s\",\u001b[39m\n\u001b[31m+       \"media_time_ms\": 20000,\u001b[39m\n\u001b[31m+       \"mode\": \"review\",\u001b[39m\n\u001b[31m+       \"origin\": \"keyboard\",\u001b[39m\n\u001b[31m+       \"phase\": \"review_ready\",\u001b[39m\n\u001b[31m+       \"seq\": 4,\u001b[39m\n\u001b[31m+       \"session_elapsed_ms\": 208,\u001b[39m\n\u001b[31m+       \"session_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2\",\u001b[39m\n\u001b[31m+       \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[39m\n\u001b[31m+       \"type\": \"ended\",\u001b[39m\n\u001b[31m+     },\u001b[39m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"state\": Object {\u001b[22m\n\u001b[2m      \"media\": Object {\u001b[22m\n\u001b[2m        \"paused\": true,\u001b[22m\n\u001b[2m        \"time\": 20,\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[32m-     \"phase\": \"已到末尾 · 无待播放片段\",\u001b[39m\n\u001b[31m+     \"phase\": \"片段练习完成\",\u001b[39m\n\u001b[2m      \"source\": \"\",\u001b[22m\n\u001b[2m      \"target\": \"操作目标：无\",\u001b[22m\n\u001b[2m      \"translation\": \"\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m\n    at /home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts:281:19",
+                    "location": {
+                      "file": "/home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts",
+                      "column": 19,
+                      "line": 281
+                    },
+                    "snippet": "  279 |     const after = { state: await state(), events: await logs(page) };\n  280 |     writeFileSync(testInfo.outputPath('no-target-shortcuts.json'), JSON.stringify({ entry, before, after }, null, 2));\n> 281 |     expect(after).toEqual(before);\n      |                   ^\n  282 |     expect(after.events.some(e => e.type === 'ended')).toBe(false);\n  283 |     sequence(after.events);\n  284 |     for (const id of ['play', 'translate', 'replay', 'mark']) await expect(page.locator(`#${id}`)).toBeDisabled();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts",
+                        "column": 19,
+                        "line": 281
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 23\u001b[39m\n\n\u001b[33m@@ -75,17 +75,39 @@\u001b[39m\n\u001b[2m        \"session_elapsed_ms\": 48,\u001b[22m\n\u001b[2m        \"session_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2\",\u001b[22m\n\u001b[2m        \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[22m\n\u001b[2m        \"type\": \"seek\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[31m+     Object {\u001b[39m\n\u001b[31m+       \"action_cue_id\": null,\u001b[39m\n\u001b[31m+       \"at_utc\": \"2026-09-26T11:26:44.767Z\",\u001b[39m\n\u001b[31m+       \"audio_cue_id\": null,\u001b[39m\n\u001b[31m+       \"delay_ms\": 1000,\u001b[39m\n\u001b[31m+       \"details\": Object {\u001b[39m\n\u001b[31m+         \"reason\": \"review_complete\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       \"display_cue_id\": null,\u001b[39m\n\u001b[31m+       \"event_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2:4\",\u001b[39m\n\u001b[31m+       \"event_schema_version\": 1,\u001b[39m\n\u001b[31m+       \"media_id\": \"timing-demo-20s\",\u001b[39m\n\u001b[31m+       \"media_time_ms\": 20000,\u001b[39m\n\u001b[31m+       \"mode\": \"review\",\u001b[39m\n\u001b[31m+       \"origin\": \"keyboard\",\u001b[39m\n\u001b[31m+       \"phase\": \"review_ready\",\u001b[39m\n\u001b[31m+       \"seq\": 4,\u001b[39m\n\u001b[31m+       \"session_elapsed_ms\": 208,\u001b[39m\n\u001b[31m+       \"session_id\": \"92be6a83-a139-4369-a068-15f5e4e3f2e2\",\u001b[39m\n\u001b[31m+       \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[39m\n\u001b[31m+       \"type\": \"ended\",\u001b[39m\n\u001b[31m+     },\u001b[39m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"state\": Object {\u001b[22m\n\u001b[2m      \"media\": Object {\u001b[22m\n\u001b[2m        \"paused\": true,\u001b[22m\n\u001b[2m        \"time\": 20,\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[32m-     \"phase\": \"已到末尾 · 无待播放片段\",\u001b[39m\n\u001b[31m+     \"phase\": \"片段练习完成\",\u001b[39m\n\u001b[2m      \"source\": \"\",\u001b[22m\n\u001b[2m      \"target\": \"操作目标：无\",\u001b[22m\n\u001b[2m      \"translation\": \"\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m\n\n  279 |     const after = { state: await state(), events: await logs(page) };\n  280 |     writeFileSync(testInfo.outputPath('no-target-shortcuts.json'), JSON.stringify({ entry, before, after }, null, 2));\n> 281 |     expect(after).toEqual(before);\n      |                   ^\n  282 |     expect(after.events.some(e => e.type === 'ended')).toBe(false);\n  283 |     sequence(after.events);\n  284 |     for (const id of ['play', 'translate', 'replay', 'mark']) await expect(page.locator(`#${id}`)).toBeDisabled();\n    at /home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts:281:19"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-26T11:26:43.367Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/forbackup/Dev/my-projects/delayed-listening-lab/test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/forbackup/Dev/my-projects/delayed-listening-lab/test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/forbackup/Dev/my-projects/delayed-listening-lab/test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--5c34a-no-ops-after-seek-in-review/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts",
+                    "column": 19,
+                    "line": 281
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-1d9ed721a7e552c33596",
+          "file": "app.spec.ts",
+          "line": 259,
+          "column": 3
+        },
+        {
+          "title": "AC-14/16/19 no-target shortcuts are no-ops after switch mode at end",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 932,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 23\u001b[39m\n\n\u001b[33m@@ -75,17 +75,39 @@\u001b[39m\n\u001b[2m        \"session_elapsed_ms\": 52,\u001b[22m\n\u001b[2m        \"session_id\": \"957496d7-ddad-46d3-a042-438421f67d5a\",\u001b[22m\n\u001b[2m        \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[22m\n\u001b[2m        \"type\": \"mode_change\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[31m+     Object {\u001b[39m\n\u001b[31m+       \"action_cue_id\": null,\u001b[39m\n\u001b[31m+       \"at_utc\": \"2026-09-26T11:26:46.330Z\",\u001b[39m\n\u001b[31m+       \"audio_cue_id\": null,\u001b[39m\n\u001b[31m+       \"delay_ms\": 1000,\u001b[39m\n\u001b[31m+       \"details\": Object {\u001b[39m\n\u001b[31m+         \"reason\": \"review_complete\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       \"display_cue_id\": null,\u001b[39m\n\u001b[31m+       \"event_id\": \"957496d7-ddad-46d3-a042-438421f67d5a:4\",\u001b[39m\n\u001b[31m+       \"event_schema_version\": 1,\u001b[39m\n\u001b[31m+       \"media_id\": \"timing-demo-20s\",\u001b[39m\n\u001b[31m+       \"media_time_ms\": 20000,\u001b[39m\n\u001b[31m+       \"mode\": \"review\",\u001b[39m\n\u001b[31m+       \"origin\": \"keyboard\",\u001b[39m\n\u001b[31m+       \"phase\": \"review_ready\",\u001b[39m\n\u001b[31m+       \"seq\": 4,\u001b[39m\n\u001b[31m+       \"session_elapsed_ms\": 190,\u001b[39m\n\u001b[31m+       \"session_id\": \"957496d7-ddad-46d3-a042-438421f67d5a\",\u001b[39m\n\u001b[31m+       \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[39m\n\u001b[31m+       \"type\": \"ended\",\u001b[39m\n\u001b[31m+     },\u001b[39m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"state\": Object {\u001b[22m\n\u001b[2m      \"media\": Object {\u001b[22m\n\u001b[2m        \"paused\": true,\u001b[22m\n\u001b[2m        \"time\": 20,\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[32m-     \"phase\": \"已到末尾 · 无待播放片段\",\u001b[39m\n\u001b[31m+     \"phase\": \"片段练习完成\",\u001b[39m\n\u001b[2m      \"source\": \"\",\u001b[22m\n\u001b[2m      \"target\": \"操作目标：无\",\u001b[22m\n\u001b[2m      \"translation\": \"\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 23\u001b[39m\n\n\u001b[33m@@ -75,17 +75,39 @@\u001b[39m\n\u001b[2m        \"session_elapsed_ms\": 52,\u001b[22m\n\u001b[2m        \"session_id\": \"957496d7-ddad-46d3-a042-438421f67d5a\",\u001b[22m\n\u001b[2m        \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[22m\n\u001b[2m        \"type\": \"mode_change\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[31m+     Object {\u001b[39m\n\u001b[31m+       \"action_cue_id\": null,\u001b[39m\n\u001b[31m+       \"at_utc\": \"2026-09-26T11:26:46.330Z\",\u001b[39m\n\u001b[31m+       \"audio_cue_id\": null,\u001b[39m\n\u001b[31m+       \"delay_ms\": 1000,\u001b[39m\n\u001b[31m+       \"details\": Object {\u001b[39m\n\u001b[31m+         \"reason\": \"review_complete\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       \"display_cue_id\": null,\u001b[39m\n\u001b[31m+       \"event_id\": \"957496d7-ddad-46d3-a042-438421f67d5a:4\",\u001b[39m\n\u001b[31m+       \"event_schema_version\": 1,\u001b[39m\n\u001b[31m+       \"media_id\": \"timing-demo-20s\",\u001b[39m\n\u001b[31m+       \"media_time_ms\": 20000,\u001b[39m\n\u001b[31m+       \"mode\": \"review\",\u001b[39m\n\u001b[31m+       \"origin\": \"keyboard\",\u001b[39m\n\u001b[31m+       \"phase\": \"review_ready\",\u001b[39m\n\u001b[31m+       \"seq\": 4,\u001b[39m\n\u001b[31m+       \"session_elapsed_ms\": 190,\u001b[39m\n\u001b[31m+       \"session_id\": \"957496d7-ddad-46d3-a042-438421f67d5a\",\u001b[39m\n\u001b[31m+       \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[39m\n\u001b[31m+       \"type\": \"ended\",\u001b[39m\n\u001b[31m+     },\u001b[39m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"state\": Object {\u001b[22m\n\u001b[2m      \"media\": Object {\u001b[22m\n\u001b[2m        \"paused\": true,\u001b[22m\n\u001b[2m        \"time\": 20,\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[32m-     \"phase\": \"已到末尾 · 无待播放片段\",\u001b[39m\n\u001b[31m+     \"phase\": \"片段练习完成\",\u001b[39m\n\u001b[2m      \"source\": \"\",\u001b[22m\n\u001b[2m      \"target\": \"操作目标：无\",\u001b[22m\n\u001b[2m      \"translation\": \"\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m\n    at /home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts:281:19",
+                    "location": {
+                      "file": "/home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts",
+                      "column": 19,
+                      "line": 281
+                    },
+                    "snippet": "  279 |     const after = { state: await state(), events: await logs(page) };\n  280 |     writeFileSync(testInfo.outputPath('no-target-shortcuts.json'), JSON.stringify({ entry, before, after }, null, 2));\n> 281 |     expect(after).toEqual(before);\n      |                   ^\n  282 |     expect(after.events.some(e => e.type === 'ended')).toBe(false);\n  283 |     sequence(after.events);\n  284 |     for (const id of ['play', 'translate', 'replay', 'mark']) await expect(page.locator(`#${id}`)).toBeDisabled();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts",
+                        "column": 19,
+                        "line": 281
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 23\u001b[39m\n\n\u001b[33m@@ -75,17 +75,39 @@\u001b[39m\n\u001b[2m        \"session_elapsed_ms\": 52,\u001b[22m\n\u001b[2m        \"session_id\": \"957496d7-ddad-46d3-a042-438421f67d5a\",\u001b[22m\n\u001b[2m        \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[22m\n\u001b[2m        \"type\": \"mode_change\",\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[31m+     Object {\u001b[39m\n\u001b[31m+       \"action_cue_id\": null,\u001b[39m\n\u001b[31m+       \"at_utc\": \"2026-09-26T11:26:46.330Z\",\u001b[39m\n\u001b[31m+       \"audio_cue_id\": null,\u001b[39m\n\u001b[31m+       \"delay_ms\": 1000,\u001b[39m\n\u001b[31m+       \"details\": Object {\u001b[39m\n\u001b[31m+         \"reason\": \"review_complete\",\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+       \"display_cue_id\": null,\u001b[39m\n\u001b[31m+       \"event_id\": \"957496d7-ddad-46d3-a042-438421f67d5a:4\",\u001b[39m\n\u001b[31m+       \"event_schema_version\": 1,\u001b[39m\n\u001b[31m+       \"media_id\": \"timing-demo-20s\",\u001b[39m\n\u001b[31m+       \"media_time_ms\": 20000,\u001b[39m\n\u001b[31m+       \"mode\": \"review\",\u001b[39m\n\u001b[31m+       \"origin\": \"keyboard\",\u001b[39m\n\u001b[31m+       \"phase\": \"review_ready\",\u001b[39m\n\u001b[31m+       \"seq\": 4,\u001b[39m\n\u001b[31m+       \"session_elapsed_ms\": 190,\u001b[39m\n\u001b[31m+       \"session_id\": \"957496d7-ddad-46d3-a042-438421f67d5a\",\u001b[39m\n\u001b[31m+       \"track_id\": \"b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6\",\u001b[39m\n\u001b[31m+       \"type\": \"ended\",\u001b[39m\n\u001b[31m+     },\u001b[39m\n\u001b[2m    ],\u001b[22m\n\u001b[2m    \"state\": Object {\u001b[22m\n\u001b[2m      \"media\": Object {\u001b[22m\n\u001b[2m        \"paused\": true,\u001b[22m\n\u001b[2m        \"time\": 20,\u001b[22m\n\u001b[2m      },\u001b[22m\n\u001b[32m-     \"phase\": \"已到末尾 · 无待播放片段\",\u001b[39m\n\u001b[31m+     \"phase\": \"片段练习完成\",\u001b[39m\n\u001b[2m      \"source\": \"\",\u001b[22m\n\u001b[2m      \"target\": \"操作目标：无\",\u001b[22m\n\u001b[2m      \"translation\": \"\",\u001b[22m\n\u001b[2m    },\u001b[22m\n\u001b[2m  }\u001b[22m\n\n  279 |     const after = { state: await state(), events: await logs(page) };\n  280 |     writeFileSync(testInfo.outputPath('no-target-shortcuts.json'), JSON.stringify({ entry, before, after }, null, 2));\n> 281 |     expect(after).toEqual(before);\n      |                   ^\n  282 |     expect(after.events.some(e => e.type === 'ended')).toBe(false);\n  283 |     sequence(after.events);\n  284 |     for (const id of ['play', 'translate', 'replay', 'mark']) await expect(page.locator(`#${id}`)).toBeDisabled();\n    at /home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts:281:19"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-26T11:26:45.590Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/forbackup/Dev/my-projects/delayed-listening-lab/test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/forbackup/Dev/my-projects/delayed-listening-lab/test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/forbackup/Dev/my-projects/delayed-listening-lab/test-results/2026-09-26T11-24-27-771Z-2b68afda/artifacts/app-AC-14-16-19-no-target--a6e18-ps-after-switch-mode-at-end/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/forbackup/Dev/my-projects/delayed-listening-lab/tests/e2e/app.spec.ts",
+                    "column": 19,
+                    "line": 281
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-8b9d2b3b1dd1871c84ef",
+          "file": "app.spec.ts",
+          "line": 259,
+          "column": 3
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-26T11:24:27.777Z",
+    "duration": 139080.769,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

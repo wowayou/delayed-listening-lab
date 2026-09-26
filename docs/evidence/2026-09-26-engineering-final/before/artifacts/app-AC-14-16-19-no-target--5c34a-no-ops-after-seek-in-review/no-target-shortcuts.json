@@ -1,0 +1,207 @@
+{
+  "entry": "seek in review",
+  "before": {
+    "state": {
+      "phase": "已到末尾 · 无待播放片段",
+      "target": "操作目标：无",
+      "source": "",
+      "translation": "",
+      "media": {
+        "time": 20,
+        "paused": true
+      }
+    },
+    "events": [
+      {
+        "event_schema_version": 1,
+        "event_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2:1",
+        "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+        "seq": 1,
+        "at_utc": "2026-09-26T11:26:44.559Z",
+        "session_elapsed_ms": 2,
+        "type": "session_start",
+        "media_id": "timing-demo-20s",
+        "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+        "media_time_ms": 0,
+        "mode": "continuous",
+        "phase": "normal",
+        "delay_ms": 1000,
+        "audio_cue_id": null,
+        "display_cue_id": null,
+        "action_cue_id": null,
+        "origin": "system",
+        "details": {
+          "media_metadata": {
+            "name": "timing-20s.wav",
+            "size": 1920078,
+            "last_modified": 1790412649510,
+            "duration_ms": 20000
+          },
+          "track_revision": "1",
+          "source_language": "en",
+          "target_language": "zh-CN"
+        }
+      },
+      {
+        "event_schema_version": 1,
+        "event_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2:2",
+        "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+        "seq": 2,
+        "at_utc": "2026-09-26T11:26:44.591Z",
+        "session_elapsed_ms": 33,
+        "type": "mode_change",
+        "media_id": "timing-demo-20s",
+        "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+        "media_time_ms": 0,
+        "mode": "continuous",
+        "phase": "normal",
+        "delay_ms": 1000,
+        "audio_cue_id": null,
+        "display_cue_id": null,
+        "action_cue_id": null,
+        "origin": "button",
+        "details": {
+          "from": "continuous",
+          "to": "review"
+        }
+      },
+      {
+        "event_schema_version": 1,
+        "event_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2:3",
+        "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+        "seq": 3,
+        "at_utc": "2026-09-26T11:26:44.606Z",
+        "session_elapsed_ms": 48,
+        "type": "seek",
+        "media_id": "timing-demo-20s",
+        "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+        "media_time_ms": 0,
+        "mode": "review",
+        "phase": "review_ready",
+        "delay_ms": 1000,
+        "audio_cue_id": null,
+        "display_cue_id": null,
+        "action_cue_id": "c0001",
+        "origin": "pointer",
+        "details": {
+          "from_ms": 0,
+          "to_ms": 20000,
+          "reason": "user"
+        }
+      }
+    ]
+  },
+  "after": {
+    "state": {
+      "phase": "片段练习完成",
+      "target": "操作目标：无",
+      "source": "",
+      "translation": "",
+      "media": {
+        "time": 20,
+        "paused": true
+      }
+    },
+    "events": [
+      {
+        "event_schema_version": 1,
+        "event_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2:1",
+        "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+        "seq": 1,
+        "at_utc": "2026-09-26T11:26:44.559Z",
+        "session_elapsed_ms": 2,
+        "type": "session_start",
+        "media_id": "timing-demo-20s",
+        "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+        "media_time_ms": 0,
+        "mode": "continuous",
+        "phase": "normal",
+        "delay_ms": 1000,
+        "audio_cue_id": null,
+        "display_cue_id": null,
+        "action_cue_id": null,
+        "origin": "system",
+        "details": {
+          "media_metadata": {
+            "name": "timing-20s.wav",
+            "size": 1920078,
+            "last_modified": 1790412649510,
+            "duration_ms": 20000
+          },
+          "track_revision": "1",
+          "source_language": "en",
+          "target_language": "zh-CN"
+        }
+      },
+      {
+        "event_schema_version": 1,
+        "event_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2:2",
+        "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+        "seq": 2,
+        "at_utc": "2026-09-26T11:26:44.591Z",
+        "session_elapsed_ms": 33,
+        "type": "mode_change",
+        "media_id": "timing-demo-20s",
+        "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+        "media_time_ms": 0,
+        "mode": "continuous",
+        "phase": "normal",
+        "delay_ms": 1000,
+        "audio_cue_id": null,
+        "display_cue_id": null,
+        "action_cue_id": null,
+        "origin": "button",
+        "details": {
+          "from": "continuous",
+          "to": "review"
+        }
+      },
+      {
+        "event_schema_version": 1,
+        "event_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2:3",
+        "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+        "seq": 3,
+        "at_utc": "2026-09-26T11:26:44.606Z",
+        "session_elapsed_ms": 48,
+        "type": "seek",
+        "media_id": "timing-demo-20s",
+        "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+        "media_time_ms": 0,
+        "mode": "review",
+        "phase": "review_ready",
+        "delay_ms": 1000,
+        "audio_cue_id": null,
+        "display_cue_id": null,
+        "action_cue_id": "c0001",
+        "origin": "pointer",
+        "details": {
+          "from_ms": 0,
+          "to_ms": 20000,
+          "reason": "user"
+        }
+      },
+      {
+        "event_schema_version": 1,
+        "event_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2:4",
+        "session_id": "92be6a83-a139-4369-a068-15f5e4e3f2e2",
+        "seq": 4,
+        "at_utc": "2026-09-26T11:26:44.767Z",
+        "session_elapsed_ms": 208,
+        "type": "ended",
+        "media_id": "timing-demo-20s",
+        "track_id": "b22706314b415a626bc8f9eb6cbdc2c515f8cb239581a5dea629eb24d1f416f6",
+        "media_time_ms": 20000,
+        "mode": "review",
+        "phase": "review_ready",
+        "delay_ms": 1000,
+        "audio_cue_id": null,
+        "display_cue_id": null,
+        "action_cue_id": null,
+        "origin": "keyboard",
+        "details": {
+          "reason": "review_complete"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+
+> delayed-listening-lab@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.2 /home/forbackup/Dev/my-projects/delayed-listening-lab
+
+
+ Test Files  3 passed (3)
+      Tests  76 passed (76)
+   Start at  19:28:09
+   Duration  172ms (transform 61%, tests 22%, import 13%, worker 3%)
+
+
+EXIT_CODE=0

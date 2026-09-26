@@ -1,0 +1,80 @@
+Recorded locally; browser version is from real-playback-{wav,mp4}.json.
+
+$ date --iso-8601=seconds
+2026-09-26T19:43:06+08:00
+EXIT_CODE=0
+
+$ uname -srmo
+Linux 6.18.33.2-microsoft-standard-WSL2 x86_64 GNU/Linux
+EXIT_CODE=0
+
+$ node --version
+v24.18.0
+EXIT_CODE=0
+
+$ npm --version
+11.16.0
+EXIT_CODE=0
+
+$ ffmpeg -version
+ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+built with gcc 13 (Ubuntu 13.2.0-23ubuntu3)
+configuration: --prefix=/usr --extra-version=3ubuntu5 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/include/x86_64-linux-gnu --arch=amd64 --enable-gpl --disable-stripping --disable-omx --enable-gnutls --enable-libaom --enable-libass --enable-libbs2b --enable-libcaca --enable-libcdio --enable-libcodec2 --enable-libdav1d --enable-libflite --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libglslang --enable-libgme --enable-libgsm --enable-libharfbuzz --enable-libmp3lame --enable-libmysofa --enable-libopenjpeg --enable-libopenmpt --enable-libopus --enable-librubberband --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libspeex --enable-libtheora --enable-libtwolame --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx265 --enable-libxml2 --enable-libxvid --enable-libzimg --enable-openal --enable-opencl --enable-opengl --disable-sndio --enable-libvpl --disable-libmfx --enable-libdc1394 --enable-libdrm --enable-libiec61883 --enable-chromaprint --enable-frei0r --enable-ladspa --enable-libbluray --enable-libjack --enable-libpulse --enable-librabbitmq --enable-librist --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libx264 --enable-libzmq --enable-libzvbi --enable-lv2 --enable-sdl2 --enable-libplacebo --enable-librav1e --enable-pocketsphinx --enable-librsvg --enable-libjxl --enable-shared
+libavutil      58. 29.100 / 58. 29.100
+libavcodec     60. 31.102 / 60. 31.102
+libavformat    60. 16.100 / 60. 16.100
+libavdevice    60.  3.100 / 60.  3.100
+libavfilter     9. 12.100 /  9. 12.100
+libswscale      7.  5.100 /  7.  5.100
+libswresample   4. 12.100 /  4. 12.100
+libpostproc    57.  3.100 / 57.  3.100
+EXIT_CODE=0
+
+Chromium: 153.0.8010.12 (Playwright, headless, Linux/WSL)
+before: test-results/2026-09-26T11-24-27-771Z-2b68afda/
+after: test-results/2026-09-26T11-30-22-052Z-7abcc9d1/
+
+$ ffprobe -v error -show_entries stream=codec_name,codec_type,sample_rate,width,height,r_frame_rate:format=duration -of json generated/timing-20s.wav
+{
+    "programs": [
+
+    ],
+    "streams": [
+        {
+            "codec_name": "pcm_s16le",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "r_frame_rate": "0/0"
+        }
+    ],
+    "format": {
+        "duration": "20.000000"
+    }
+}
+EXIT_CODE=0
+
+$ ffprobe -v error -show_entries stream=codec_name,codec_type,sample_rate,width,height,r_frame_rate:format=duration -of json generated/timing-20s.mp4
+{
+    "programs": [
+
+    ],
+    "streams": [
+        {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "r_frame_rate": "30/1"
+        },
+        {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "r_frame_rate": "0/0"
+        }
+    ],
+    "format": {
+        "duration": "20.000000"
+    }
+}
+EXIT_CODE=0
